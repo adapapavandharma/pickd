@@ -10,7 +10,7 @@
 import {
   simulate, mergeReal, getRealEvents, clearRealEvents,
   withinDays, previousWindow, totals, byDay, byProduct, byCategory, bySource, SOURCES,
-} from "./analytics.js";
+} from "./analytics.js?v=9da3dafb";
 
 const $  = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];

@@ -3,7 +3,7 @@
    Pure ES module, no dependencies. Data comes from data/products.json.
    ============================================================ */
 
-import { recordClick } from "./analytics.js";
+import { recordClick } from "./analytics.js?v=9da3dafb";
 
 const $  = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
