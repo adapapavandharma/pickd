@@ -3,8 +3,31 @@
    Pure ES module, no dependencies. Data comes from data/products.json.
    ============================================================ */
 
+import { recordClick } from "./analytics.js";
+
 const $  = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
+
+/* Which channel this visit came from. utm_source wins; otherwise the referrer
+   decides. Used to attribute clicks on the dashboard. */
+function visitSource() {
+  const utm = new URLSearchParams(location.search).get("utm_source");
+  if (utm) {
+    const u = utm.toLowerCase();
+    if (u.includes("news") || u.includes("email")) return "Newsletter";
+    if (/twitter|x\.com|insta|facebook|reddit|tiktok|pinterest|linkedin/.test(u)) return "Social";
+    return "Referral";
+  }
+  const ref = document.referrer;
+  if (!ref) return "Direct";
+  try {
+    const host = new URL(ref).hostname.replace(/^www\./, "");
+    if (host === location.hostname) return "Direct";
+    if (/google|bing|duckduckgo|yahoo|ecosia|brave/.test(host)) return "Organic search";
+    if (/twitter|x\.com|instagram|facebook|reddit|tiktok|pinterest|linkedin|youtube/.test(host)) return "Social";
+    return "Referral";
+  } catch { return "Direct"; }
+}
 
 const state = {
   site: {},
@@ -257,6 +280,17 @@ async function boot() {
     state.query = ""; state.category = "All"; $("#q").value = "";
     $$(".chip").forEach((c) => c.setAttribute("aria-pressed", String(c.dataset.cat === "All")));
     render();
+  });
+
+  /* Record every outbound affiliate click. This is the real half of the
+     dashboard — the simulated history is only there so it isn't empty. */
+  const source = visitSource();
+  document.addEventListener("click", (e) => {
+    const link = e.target.closest('a[rel~="sponsored"]');
+    if (!link) return;
+    const card = link.closest("[data-id]");
+    const id = card?.dataset.id || state.products.find((p) => p.url === link.href)?.id;
+    if (id) recordClick(id, source);
   });
 
   $("#grid").addEventListener("click", (e) => {

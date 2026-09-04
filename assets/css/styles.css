@@ -104,6 +104,26 @@ button,input,select{font:inherit; color:inherit}
   transform:rotate(-8deg);
 }
 .brand__name{font-family:var(--serif); font-size:22px; font-weight:600; letter-spacing:-.02em}
+.pill{
+  font-size:9.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--accent); background:var(--accent-soft);
+  border:1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+  border-radius:var(--r-full); padding:2px 7px; line-height:1.5; flex:0 0 auto;
+}
+
+/* section switcher, shared by both pages */
+.tabs{
+  display:flex; gap:4px; flex:0 0 auto;
+  background:var(--paper-2); border:1px solid var(--line);
+  border-radius:var(--r-full); padding:3px;
+}
+.tabs a{
+  padding:6px 15px; border-radius:var(--r-full); text-decoration:none;
+  font-size:13.5px; font-weight:500; color:var(--ink-2); white-space:nowrap;
+  transition:background .18s var(--ease), color .18s;
+}
+.tabs a:hover{color:var(--ink)}
+.tabs a[aria-current="page"]{background:var(--surface); color:var(--ink); box-shadow:var(--shadow-1)}
 
 .search{position:relative; flex:1 1 auto; max-width:420px; margin-inline:auto}
 .search input{
@@ -326,6 +346,14 @@ button,input,select{font:inherit; color:inherit}
 .foot{padding:52px 0 44px; border-top:1px solid var(--line); background:var(--paper)}
 .foot__inner{display:flex; flex-direction:column; gap:14px; align-items:flex-start}
 .foot__brand{display:flex; align-items:center; gap:9px; font-family:var(--serif); font-size:19px}
+.foot__note{
+  max-width:74ch; font-size:13.5px; line-height:1.65; color:var(--ink-2);
+  padding:14px 16px; border-radius:var(--r-md);
+  background:var(--paper-2); border:1px solid var(--line);
+}
+.foot__note strong{color:var(--ink)}
+.foot__note a{color:var(--accent); text-decoration:none; white-space:nowrap}
+.foot__note a:hover{text-decoration:underline}
 .foot__disc{margin:0; font-size:13px; color:var(--muted); max-width:74ch; line-height:1.65}
 .foot__meta{margin:0; font-size:12.5px; color:var(--muted)}
 .foot__meta a{color:var(--accent); text-decoration:none}
@@ -367,9 +395,25 @@ button,input,select{font:inherit; color:inherit}
   .sheet__info{padding:24px 22px 28px}
 }
 
+@media (max-width:900px){
+  .pill{display:none}
+  .search{max-width:none}
+}
+
+/* Four things do not fit one bar on a phone, so it wraps into two rows and the
+   filter bar stops being sticky — a sticky offset can't track a variable-height
+   header without measuring it, and a wrong offset is worse than none. */
+@media (max-width:680px){
+  .topbar__inner{flex-wrap:wrap; height:auto; padding-block:10px; gap:10px}
+  .brand{order:1}
+  .iconbtn{order:2; margin-left:auto}
+  .search{order:3; flex:1 1 100%; max-width:none; margin:0}
+  .tabs{order:4; flex:1 1 100%; justify-content:center}
+  .controls{position:static}
+  .dash__head{padding-top:24px}
+}
+
 @media (max-width:640px){
-  .topbar__inner{height:60px; gap:10px}
-  .controls{top:60px}
   .brand__name{display:none}
   .grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:20px 14px}
   .card__body{padding:14px 15px 16px}

@@ -1,0 +1,222 @@
+/* ============================================================
+   Pickd — performance dashboard
+   Layers on top of styles.css. Chart tokens are defined by ROLE so the
+   light/dark values swap in one place and the charts are written against
+   roles, never raw hex.
+
+   The categorical order below was chosen by running the palette validator,
+   not by eye. Light and dark are the same five hues stepped for their own
+   surface — dark is not an automatic flip.
+
+     slot        light      dark
+     1 terracotta #bf4b2c   #c85b3e
+     2 teal       #0e8f80   #0f8d7d
+     3 gold       #e0a41b   #b5851f
+     4 indigo     #3a55c8   #5069d8
+     5 plum       #9c3f7a   #9e3f75
+
+   Both modes carry one sub-3:1 slot (gold in light, plum in dark). The
+   relief rule applies and is satisfied: every segment is directly labelled
+   and every chart has a table-view twin.
+   ============================================================ */
+
+:root{
+  --viz-surface:#fffdfa;
+  --viz-grid:#ece5da;
+  --viz-axis:#d8cdbd;
+  --viz-ink:#1a1613;
+  --viz-ink-2:#4a423b;
+  --viz-muted:#857a70;
+  --viz-good:#0f7a3d;
+  --viz-bad:#b3402c;
+
+  --s1:#bf4b2c;
+  --s2:#0e8f80;
+  --s3:#e0a41b;
+  --s4:#3a55c8;
+  --s5:#9c3f7a;
+}
+
+[data-theme="dark"]{
+  --viz-surface:#1a1613;
+  --viz-grid:#2b2521;
+  --viz-axis:#3a322c;
+  --viz-ink:#f3ece3;
+  --viz-ink-2:#cdc2b6;
+  --viz-muted:#9b9088;
+  --viz-good:#3fbb6d;
+  --viz-bad:#e8836a;
+
+  --s1:#c85b3e;
+  --s2:#0f8d7d;
+  --s3:#b5851f;
+  --s4:#5069d8;
+  --s5:#9e3f75;
+}
+
+/* ---------- page ---------- */
+.dash{background:var(--paper)}
+.dash__main{padding-bottom:70px}
+
+.dash__head{display:flex; flex-wrap:wrap; gap:22px; align-items:flex-end;
+  justify-content:space-between; padding:clamp(32px,5vw,54px) 0 26px}
+.dash__title{
+  margin:6px 0 0; font-family:var(--serif); font-weight:500;
+  font-size:clamp(30px,5vw,50px); line-height:1.02; letter-spacing:-.032em;
+}
+.dash__title em{font-style:italic; font-weight:300; color:var(--accent)}
+
+.notice{
+  display:flex; gap:10px; align-items:flex-start; max-width:44ch; margin:0;
+  padding:12px 15px; border-radius:var(--r-md);
+  background:var(--accent-soft); color:var(--ink-2);
+  font-size:13px; line-height:1.5;
+}
+.notice strong{color:var(--ink)}
+.notice svg{width:16px;height:16px;flex:0 0 auto;margin-top:2px;fill:none;
+  stroke:var(--accent);stroke-width:1.9;stroke-linecap:round}
+
+/* ---------- filters: one row, above everything it scopes ---------- */
+.filters{display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+  padding:14px 0 22px; border-top:1px solid var(--line)}
+.seg{display:flex; gap:3px; background:var(--paper-2); border:1px solid var(--line);
+  border-radius:var(--r-full); padding:3px}
+.seg button{
+  padding:6px 15px; border:none; background:none; border-radius:var(--r-full);
+  font-size:13.5px; font-weight:500; color:var(--ink-2); cursor:pointer;
+  transition:background .18s var(--ease), color .18s;
+}
+.seg button:hover{color:var(--ink)}
+.seg button[aria-pressed="true"]{background:var(--surface); color:var(--ink); box-shadow:var(--shadow-1)}
+.filters__meta{font-size:13px; color:var(--muted)}
+.linkbtn{margin-left:auto; border:none; background:none; cursor:pointer;
+  font-size:13px; color:var(--accent); text-decoration:underline; padding:0}
+
+/* ---------- hero figure + stat tiles ---------- */
+.kpis{display:grid; gap:18px; grid-template-columns:minmax(240px,.85fr) minmax(0,2.4fr);
+  align-items:stretch; margin-bottom:20px}
+@media (max-width:860px){ .kpis{grid-template-columns:1fr} }
+
+.hero-fig{
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--r-lg);
+  padding:26px 26px 24px; box-shadow:var(--shadow-1);
+  display:flex; flex-direction:column; justify-content:center;
+}
+.hero-fig__label{margin:0 0 6px; font-size:12px; font-weight:600; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--muted)}
+/* Hero figure stays in the UI sans and uses proportional figures — a serif
+   face or tabular digits both read as decoration at this size. */
+.hero-fig__value{
+  margin:0; font-family:var(--sans); font-weight:600;
+  font-size:clamp(44px,6vw,58px); line-height:1; letter-spacing:-.03em; color:var(--ink);
+}
+.hero-fig__delta{margin:10px 0 0; font-size:13px; color:var(--muted)}
+.delta{font-weight:600}
+.delta--up{color:var(--viz-good)}
+.delta--down{color:var(--viz-bad)}
+
+.tiles{display:grid; gap:18px; grid-template-columns:repeat(auto-fit,minmax(165px,1fr))}
+.tile{
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--r-lg);
+  padding:18px 18px 14px; box-shadow:var(--shadow-1);
+  display:flex; flex-direction:column; gap:5px;
+}
+.tile__label{font-size:12px; font-weight:600; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--muted)}
+.tile__value{font-family:var(--sans); font-size:27px; font-weight:600;
+  letter-spacing:-.022em; color:var(--ink); line-height:1.1}
+.tile__delta{font-size:12.5px; color:var(--muted)}
+.tile__spark{margin-top:6px; height:30px}
+
+/* ---------- chart cards ---------- */
+.charts{display:grid; gap:18px; grid-template-columns:repeat(2,minmax(0,1fr)); margin-bottom:18px}
+.card-v{
+  margin:0; background:var(--surface); border:1px solid var(--line);
+  border-radius:var(--r-lg); padding:22px 22px 18px; box-shadow:var(--shadow-1);
+  min-width:0;
+}
+.card-v--wide{grid-column:1 / -1}
+@media (max-width:860px){ .charts{grid-template-columns:1fr} .card-v--wide{grid-column:auto} }
+
+.card-v figcaption, .tablehead{margin-bottom:16px}
+.card-v h2, .tablehead h2{
+  margin:0; font-family:var(--serif); font-size:19px; font-weight:600;
+  letter-spacing:-.018em; color:var(--ink);
+}
+.card-v figcaption p, .tablehead p{margin:3px 0 0; font-size:13px; color:var(--muted)}
+
+/* Container includes the x-axis band, so the axis is never cut off. */
+.plot{width:100%; height:250px}
+.plot--short{height:96px}
+.plot svg{display:block; overflow:visible}
+
+/* chart text always wears text tokens, never a series colour */
+.ax{font-size:11px; fill:var(--viz-muted); font-variant-numeric:tabular-nums}
+.ax--name{font-size:11.5px; fill:var(--viz-ink-2)}
+.val{font-size:11.5px; font-weight:600; fill:var(--viz-ink-2); font-variant-numeric:tabular-nums}
+.gridline{stroke:var(--viz-grid); stroke-width:1; shape-rendering:crispEdges}
+.axisline{stroke:var(--viz-axis); stroke-width:1; shape-rendering:crispEdges}
+
+/* ---------- legend ---------- */
+.legend{display:flex; flex-wrap:wrap; gap:8px 18px; margin-top:14px}
+.legend span{display:inline-flex; align-items:center; gap:7px; font-size:12.5px; color:var(--viz-ink-2)}
+.legend i{width:10px; height:10px; border-radius:3px; flex:0 0 auto}
+
+/* ---------- tooltip ---------- */
+.tip{
+  position:fixed; z-index:60; pointer-events:none;
+  background:var(--ink); color:var(--paper);
+  padding:9px 12px; border-radius:10px; font-size:12.5px; line-height:1.45;
+  box-shadow:var(--shadow-2); max-width:230px;
+  transition:opacity .12s var(--ease);
+}
+.tip b{display:block; font-size:12px; font-weight:600; margin-bottom:3px; opacity:.75}
+.tip .tip__row{display:flex; justify-content:space-between; gap:14px; font-variant-numeric:tabular-nums}
+
+/* ---------- tables ---------- */
+.tableview{margin-top:16px; border-top:1px solid var(--line); padding-top:12px}
+.tableview summary{font-size:12.5px; color:var(--muted); cursor:pointer; list-style:none}
+.tableview summary::-webkit-details-marker{display:none}
+.tableview summary::before{content:"▸ "; display:inline-block; transition:transform .2s}
+.tableview[open] summary::before{content:"▾ "}
+.tableview summary:hover{color:var(--ink)}
+
+.tablewrap{overflow-x:auto; margin-top:10px}
+.dtable{width:100%; border-collapse:collapse; font-size:13px; min-width:660px}
+.dtable th, .dtable td{padding:9px 12px; text-align:right; white-space:nowrap;
+  font-variant-numeric:tabular-nums}
+.dtable th{
+  font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--muted); border-bottom:1px solid var(--line-2); cursor:pointer;
+  position:sticky; top:0; background:var(--surface);
+}
+.dtable th:hover{color:var(--ink)}
+.dtable th[aria-sort]::after{content:" ↓"; opacity:.7}
+.dtable th[aria-sort="ascending"]::after{content:" ↑"}
+.dtable .th--text, .dtable .td--text{text-align:left; white-space:normal; min-width:190px}
+.dtable td{border-bottom:1px solid var(--line); color:var(--ink-2)}
+.dtable tbody tr:hover td{background:var(--paper-2)}
+.dtable .td--text{color:var(--ink); font-weight:500}
+.dtable .cat{display:block; font-size:11px; color:var(--muted); font-weight:400; margin-top:2px}
+.dtable tfoot td{font-weight:600; color:var(--ink); border-bottom:none; border-top:1px solid var(--line-2)}
+
+.methods{
+  margin:26px 0 0; padding:16px 18px; border-radius:var(--r-md);
+  background:var(--paper-2); border:1px solid var(--line);
+  font-size:13px; color:var(--ink-2); line-height:1.6;
+}
+.methods strong{color:var(--ink)}
+.methods code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12px;
+  background:var(--surface); border:1px solid var(--line); border-radius:5px; padding:1px 5px}
+
+@media (max-width:640px){
+  .topbar__inner{flex-wrap:wrap; height:auto; padding-block:10px; gap:10px}
+  .dash__head{padding-top:26px}
+  .plot{height:210px}
+}
+
+@media print{
+  .filters,.tabs,.tip,.linkbtn{display:none!important}
+  .card-v{break-inside:avoid; box-shadow:none}
+  .tableview[open] summary{display:none}
+}

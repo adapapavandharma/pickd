@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/styles.css?v=f56925f7">
+<link rel="stylesheet" href="assets/css/styles.css?v=ac364028">
 </head>
 <body>
 
@@ -27,6 +27,7 @@
     <a class="brand" href="#top">
       <span class="brand__mark" aria-hidden="true"></span>
       <span class="brand__name" data-site="brand">Pickd</span>
+      <span class="pill">Demo</span>
     </a>
 
     <div class="search">
@@ -34,6 +35,11 @@
       <input id="q" type="search" placeholder="Search the shelf…" autocomplete="off" aria-label="Search products">
       <kbd class="search__kbd">/</kbd>
     </div>
+
+    <nav class="tabs" aria-label="Sections">
+      <a href="index.html" aria-current="page">Shelf</a>
+      <a href="dashboard.html">Performance</a>
+    </nav>
 
     <button class="iconbtn" id="theme" type="button" aria-label="Toggle dark mode">
       <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg>
@@ -56,7 +62,7 @@
       </p>
       <div class="hero__cta">
         <a class="btn btn--solid" href="#grid">Browse the shelf</a>
-        <a class="btn btn--ghost" href="#how">How this works</a>
+        <a class="btn btn--ghost" href="dashboard.html">See the numbers &rarr;</a>
       </div>
       <p class="hero__note">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7.5 3.8v5c0 4.4-3.1 7.9-7.5 9.2-4.4-1.3-7.5-4.8-7.5-9.2v-5z"/></svg>
@@ -121,6 +127,12 @@
       <span class="brand__mark" aria-hidden="true"></span>
       <strong data-site="brand">Pickd</strong>
     </div>
+    <div class="foot__note">
+      <strong>What this is.</strong> A demonstration build — an editorial affiliate storefront with a working
+      analytics layer, made to show the finished article rather than describe it. The products and images are real;
+      the affiliate tag is a placeholder and every figure on the dashboard is sample data.
+      <a href="https://github.com/adapapavandharma/pickd">Source on GitHub &rarr;</a>
+    </div>
     <p class="foot__disc" data-site="disclosure"></p>
     <p class="foot__meta">© <span id="year"></span> · Built as a static site · <a href="#top">Back to top</a></p>
   </div>
@@ -131,6 +143,6 @@
   <div class="sheet__body" id="sheetBody"></div>
 </dialog>
 
-<script src="assets/js/app.js?v=01c5b193" type="module"></script>
+<script src="assets/js/app.js?v=eb6b038b" type="module"></script>
 </body>
 </html>
