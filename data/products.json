@@ -1,0 +1,195 @@
+{
+  "site": {
+    "brand": "Pickd",
+    "tagline": "A small shelf, not a warehouse. Everything here earned its spot — no sponsored slots, no filler, no forty near-identical options.",
+    "affiliateTag": "pickd-20",
+    "updated": "2026-09-04",
+    "disclosure": "As an Amazon Associate, this site earns from qualifying purchases. Product links are affiliate links: if you buy through one, this site may receive a small commission at no additional cost to you. Prices and availability are shown live on Amazon and change frequently — the price on the product page is always the one that counts. Product images and names are the property of their respective owners."
+  },
+  "products": [
+    {
+      "id": "B09XS7JWHH",
+      "asin": "B09XS7JWHH",
+      "title": "Sony WH-1000XM5",
+      "brand": "Sony",
+      "category": "Audio",
+      "badge": "Editor's pick",
+      "badgeStyle": "gold",
+      "blurb": "The noise cancelling everyone else is still measuring themselves against. On a plane it turns engine roar into a distant hum.",
+      "description": "If you fly, commute, or work anywhere with other humans in it, this is the one to get. The cancellation is a genuine step above the XM4, the call quality finally stopped being embarrassing, and the 30-hour battery means you stop thinking about charging it.",
+      "features": [
+        "Best-in-class active noise cancellation, especially on low-frequency drone",
+        "Around 30 hours per charge, 3 minutes of charging gets you roughly 3 hours",
+        "Multipoint pairing — laptop and phone connected at the same time",
+        "Speak-to-Chat pauses playback when you start talking"
+      ],
+      "drawback": "They no longer fold flat, so the case is noticeably bulkier than the XM4's. If you live out of a small bag, that matters.",
+      "image": "assets/img/B09XS7JWHH.jpg",
+      "url": "https://www.amazon.com/dp/B09XS7JWHH?tag=pickd-20",
+      "merchant": "Amazon",
+      "price": null,
+      "rating": null,
+      "source": "curated"
+    },
+    {
+      "id": "B08KTZ8249",
+      "asin": "B08KTZ8249",
+      "title": "Kindle Paperwhite",
+      "brand": "Amazon",
+      "category": "Reading",
+      "badge": "Best value",
+      "blurb": "The 6.8\" screen and warm front light are the two upgrades that actually change how much you read. Waterproof, so the bath is fair game.",
+      "description": "A Kindle is one of the few gadgets that reliably makes you do more of a good thing. The Paperwhite is the sweet spot in the range: the bigger screen and adjustable warm light are worth the step up from the base model, and you are not paying Oasis money for page-turn buttons.",
+      "features": [
+        "6.8\" 300 ppi glare-free display that reads like paper in direct sun",
+        "Adjustable warm front light for night reading",
+        "IPX8 waterproof — survives a drop in the bath or the pool",
+        "Weeks of battery, not hours"
+      ],
+      "drawback": "Lock-screen ads unless you pay to remove them, and it is still a walled garden — sideloading EPUBs means converting them first.",
+      "image": "assets/img/B08KTZ8249.jpg",
+      "url": "https://www.amazon.com/dp/B08KTZ8249?tag=pickd-20",
+      "merchant": "Amazon",
+      "price": null,
+      "rating": null,
+      "source": "curated"
+    },
+    {
+      "id": "B09HM94VDS",
+      "asin": "B09HM94VDS",
+      "title": "Logitech MX Master 3S",
+      "brand": "Logitech",
+      "category": "Desk",
+      "badge": "Editor's pick",
+      "badgeStyle": "gold",
+      "blurb": "The mouse people replace their mouse for. Silent clicks, a scroll wheel that free-spins through a thousand rows, three devices on one button.",
+      "description": "It is expensive for a mouse and it is still the easiest recommendation on this list. The MagSpeed wheel alone changes how you move through long documents and spreadsheets, and the quiet switches make open-plan life better for everyone near you.",
+      "features": [
+        "MagSpeed electromagnetic scrolling — ratchet for precision, free-spin for distance",
+        "Near-silent click switches",
+        "Pairs with three devices, switch between them with one button",
+        "USB-C, and a full day of use from a few minutes of charge"
+      ],
+      "drawback": "Shaped firmly for right hands and medium-to-large ones at that. Small hands and left hands should look elsewhere.",
+      "image": "assets/img/B09HM94VDS.jpg",
+      "url": "https://www.amazon.com/dp/B09HM94VDS?tag=pickd-20",
+      "merchant": "Amazon",
+      "price": null,
+      "rating": null,
+      "source": "curated"
+    },
+    {
+      "id": "B0932QJ2JZ",
+      "asin": "B0932QJ2JZ",
+      "title": "Apple AirTag (4-pack)",
+      "brand": "Apple",
+      "category": "Everyday carry",
+      "blurb": "Keys, bag, suitcase, car. The four-pack is the only sensible way to buy them, and precision finding walks you to within a few inches.",
+      "description": "The Find My network is the whole product — hundreds of millions of iPhones quietly reporting where your bag is. Nothing from any other brand comes close on coverage. Put one in checked luggage before you next fly and you will understand the appeal within one trip.",
+      "features": [
+        "Precision Finding with on-screen direction and distance on recent iPhones",
+        "Piggybacks on the entire Find My network, not just your own devices",
+        "User-replaceable CR2032 battery, about a year per battery",
+        "IP67 water and dust resistant"
+      ],
+      "drawback": "iPhone only — there is no real Android experience. And they have no keyring hole, so budget for a holder on top.",
+      "image": "assets/img/B0932QJ2JZ.jpg",
+      "url": "https://www.amazon.com/dp/B0932QJ2JZ?tag=pickd-20",
+      "merchant": "Amazon",
+      "price": null,
+      "rating": null,
+      "source": "curated"
+    },
+    {
+      "id": "B09VPHVT2Z",
+      "asin": "B09VPHVT2Z",
+      "title": "Anker 737 Power Bank (PowerCore 24K)",
+      "brand": "Anker",
+      "category": "Power",
+      "badge": "Travel kit",
+      "blurb": "24,000mAh with 140W out and a little display that tells you the truth about what is going in and out. It will charge a laptop, properly.",
+      "description": "Most power banks are a phone top-up. This is a genuine second battery for a laptop — 140W means it will run a MacBook Pro rather than merely slow its decline. The screen showing real wattage and remaining capacity is the feature you did not know you wanted.",
+      "features": [
+        "24,000mAh, cleared for carry-on under the usual 100Wh airline limit",
+        "140W max output over USB-C — enough for most laptops",
+        "Digital display showing live input, output and time remaining",
+        "Recharges itself fast, so it is ready the next morning"
+      ],
+      "drawback": "It is heavy and it is a brick. This is luggage, not something you carry in a jacket pocket.",
+      "image": "assets/img/B09VPHVT2Z.jpg",
+      "url": "https://www.amazon.com/dp/B09VPHVT2Z?tag=pickd-20",
+      "merchant": "Amazon",
+      "price": null,
+      "rating": null,
+      "source": "curated"
+    },
+    {
+      "id": "B08HMWZBXC",
+      "asin": "B08HMWZBXC",
+      "title": "Soundcore Life Q30",
+      "brand": "Soundcore by Anker",
+      "category": "Audio",
+      "badge": "Budget pick",
+      "badgeStyle": "deal",
+      "blurb": "The runner-up to the Sony, at a fraction of the price. Not as quiet, but 80% of the way there for a lot less money.",
+      "description": "If the XM5 is more headphone than the occasion calls for, this is the honest alternative. The noise cancelling is good rather than exceptional, the battery is genuinely enormous, and losing them on a train is an annoyance rather than a disaster.",
+      "features": [
+        "Around 40 hours with noise cancelling on",
+        "Multiple ANC modes for transport, indoor and outdoor",
+        "Folds flat into a hard case",
+        "USB-C charging, plus a 3.5mm cable for wired use"
+      ],
+      "drawback": "The bass is boosted out of the box and the app is where you fix that. Call quality is fine, not good.",
+      "image": "assets/img/B08HMWZBXC.jpg",
+      "url": "https://www.amazon.com/dp/B08HMWZBXC?tag=pickd-20",
+      "merchant": "Amazon",
+      "price": null,
+      "rating": null,
+      "source": "curated"
+    },
+    {
+      "id": "B09B8V1LZ3",
+      "asin": "B09B8V1LZ3",
+      "title": "Echo Dot (5th generation)",
+      "brand": "Amazon",
+      "category": "Home",
+      "blurb": "Better sound than the ball has any right to have, and a temperature sensor that makes it genuinely useful for automations.",
+      "description": "The Dot has quietly become a decent small speaker rather than a novelty. For a kitchen, a bedside table, or the room you want a timer and a weather report in, it does the job and costs very little.",
+      "features": [
+        "Noticeably fuller sound than the 4th generation",
+        "Built-in temperature sensor for routines",
+        "Eero built in to extend a mesh network",
+        "Tap-to-snooze on the top"
+      ],
+      "drawback": "It is an always-listening microphone made by a retailer. That is a fair trade for some people and a dealbreaker for others — decide deliberately.",
+      "image": "assets/img/B09B8V1LZ3.jpg",
+      "url": "https://www.amazon.com/dp/B09B8V1LZ3?tag=pickd-20",
+      "merchant": "Amazon",
+      "price": null,
+      "rating": null,
+      "source": "curated"
+    },
+    {
+      "id": "B08MQZXN1X",
+      "asin": "B08MQZXN1X",
+      "title": "Fire TV Stick 4K Max",
+      "brand": "Amazon",
+      "category": "Streaming",
+      "blurb": "The cheapest way to make an old 4K television feel new again. Wi-Fi 6, Dolby Vision, and it stops stuttering.",
+      "description": "Televisions get slow long before their panels get bad. A streaming stick is the cheapest possible fix, and the Max is the version worth buying — the extra memory is the difference between an interface that responds and one that makes you wait.",
+      "features": [
+        "4K with Dolby Vision, HDR10+ and Dolby Atmos passthrough",
+        "Wi-Fi 6 for a steadier picture on a busy network",
+        "Meaningfully faster than the standard 4K stick",
+        "Remote controls TV power and volume too"
+      ],
+      "drawback": "The home screen is an advertisement for Amazon's own content and there is no way to turn that off.",
+      "image": "assets/img/B08MQZXN1X.jpg",
+      "url": "https://www.amazon.com/dp/B08MQZXN1X?tag=pickd-20",
+      "merchant": "Amazon",
+      "price": null,
+      "rating": null,
+      "source": "curated"
+    }
+  ]
+}

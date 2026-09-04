@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pickd — things worth owning</title>
+<meta name="description" content="A small, opinionated shelf of things actually worth owning. Hand-picked, honestly described, no filler.">
+<meta name="color-scheme" content="light dark">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Pickd — things worth owning">
+<meta property="og:description" content="A small, opinionated shelf of things actually worth owning.">
+<meta property="og:image" content="assets/img/og.jpg">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#127793;</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<a class="skip" href="#grid">Skip to products</a>
+
+<header class="topbar" id="topbar">
+  <div class="wrap topbar__inner">
+    <a class="brand" href="#top">
+      <span class="brand__mark" aria-hidden="true"></span>
+      <span class="brand__name" data-site="brand">Pickd</span>
+    </a>
+
+    <div class="search">
+      <svg class="search__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="Search the shelf…" autocomplete="off" aria-label="Search products">
+      <kbd class="search__kbd">/</kbd>
+    </div>
+
+    <button class="iconbtn" id="theme" type="button" aria-label="Toggle dark mode">
+      <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg>
+      <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.2 8.2 0 019.5 4 8.5 8.5 0 1020 14.5z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="hero__glow" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="wrap hero__inner">
+      <p class="eyebrow">Curated · updated <span data-site="updated">continuously</span></p>
+      <h1 class="hero__title">
+        Things actually<br><em>worth owning.</em>
+      </h1>
+      <p class="hero__sub" data-site="tagline">
+        A small shelf, not a warehouse. Everything here earned its spot — no sponsored slots, no filler, no forty near-identical options.
+      </p>
+      <div class="hero__cta">
+        <a class="btn btn--solid" href="#grid">Browse the shelf</a>
+        <a class="btn btn--ghost" href="#how">How this works</a>
+      </div>
+      <p class="hero__note">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7.5 3.8v5c0 4.4-3.1 7.9-7.5 9.2-4.4-1.3-7.5-4.8-7.5-9.2v-5z"/></svg>
+        Some links are affiliate links. Prices never change for you.
+      </p>
+    </div>
+  </section>
+
+  <section class="controls" id="controls">
+    <div class="wrap controls__inner">
+      <div class="chips" id="chips" role="group" aria-label="Filter by category"></div>
+      <div class="controls__right">
+        <label class="sr-only" for="sort">Sort products</label>
+        <select id="sort" class="select">
+          <option value="featured">Featured</option>
+          <option value="price-asc">Price · low to high</option>
+          <option value="price-desc">Price · high to low</option>
+          <option value="rating">Highest rated</option>
+          <option value="title">A–Z</option>
+        </select>
+        <span class="count" id="count" aria-live="polite"></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="grid" id="grid"></div>
+    <div class="empty" id="empty" hidden>
+      <h3>Nothing on the shelf matches that.</h3>
+      <p>Try a shorter search, or clear the filters.</p>
+      <button class="btn btn--ghost" type="button" id="clear">Clear filters</button>
+    </div>
+  </section>
+
+  <section class="how" id="how">
+    <div class="wrap how__inner">
+      <h2>How this shelf works</h2>
+      <div class="how__cols">
+        <article>
+          <span class="how__n">01</span>
+          <h3>Few, not many</h3>
+          <p>One pick per job. If two things do the same thing, only the better one is here — and the runner-up gets a line explaining why it lost.</p>
+        </article>
+        <article>
+          <span class="how__n">02</span>
+          <h3>Written plainly</h3>
+          <p>Every entry says what it is good at and where it falls down. A product with no drawbacks listed is a product nobody actually used.</p>
+        </article>
+        <article>
+          <span class="how__n">03</span>
+          <h3>Paid by clicks, not opinions</h3>
+          <p>Links carry an affiliate tag, so a purchase may earn a small commission at no extra cost to you. That commission never buys a spot on this page.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__inner">
+    <div class="foot__brand">
+      <span class="brand__mark" aria-hidden="true"></span>
+      <strong data-site="brand">Pickd</strong>
+    </div>
+    <p class="foot__disc" data-site="disclosure"></p>
+    <p class="foot__meta">© <span id="year"></span> · Built as a static site · <a href="#top">Back to top</a></p>
+  </div>
+</footer>
+
+<dialog class="sheet" id="sheet" aria-label="Product details">
+  <button class="sheet__close" id="sheetClose" type="button" aria-label="Close">&times;</button>
+  <div class="sheet__body" id="sheetBody"></div>
+</dialog>
+
+<script src="assets/js/app.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://adapapavandharma.github.io/pickd/sitemap.xml

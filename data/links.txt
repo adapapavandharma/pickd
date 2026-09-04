@@ -1,0 +1,11 @@
+# One product link (or bare ASIN) per line. Lines starting with # are ignored.
+# Then run:  npm run extract -- --tag yourtag-20
+
+B09XS7JWHH   # Sony WH-1000XM5
+B08KTZ8249   # Kindle Paperwhite
+B09HM94VDS   # Logitech MX Master 3S
+B0932QJ2JZ   # Apple AirTag 4-pack
+B09VPHVT2Z   # Anker 737 Power Bank
+B08HMWZBXC   # Soundcore Life Q30
+B09B8V1LZ3   # Echo Dot (5th gen)
+B08MQZXN1X   # Fire TV Stick 4K Max
