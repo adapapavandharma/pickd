@@ -16,6 +16,8 @@
   --accent-ink:#fff;
   --accent-soft:#f6e4dc;
   --gold:#b78b3f;
+  --plinth:#fdfcfa;
+  --plinth-2:#f4f0e9;
   --shadow-1:0 1px 2px rgba(45,32,22,.05), 0 4px 14px rgba(45,32,22,.05);
   --shadow-2:0 2px 6px rgba(45,32,22,.07), 0 18px 44px rgba(45,32,22,.12);
   --r-sm:10px; --r-md:16px; --r-lg:24px; --r-full:999px;
@@ -38,6 +40,8 @@
   --accent-ink:#1a0f09;
   --accent-soft:#2e1e17;
   --gold:#d6a955;
+  --plinth:#ece7df;
+  --plinth-2:#dcd5ca;
   --shadow-1:0 1px 2px rgba(0,0,0,.4), 0 4px 14px rgba(0,0,0,.32);
   --shadow-2:0 2px 6px rgba(0,0,0,.45), 0 18px 44px rgba(0,0,0,.55);
 }
@@ -228,13 +232,19 @@ button,input,select{font:inherit; color:inherit}
 }
 .card:hover{transform:translateY(-6px); box-shadow:var(--shadow-2); border-color:var(--line-2)}
 
+/* Merchant product shots are JPEGs on a hard white ground. Left alone they read
+   as white rectangles pasted onto the card. A light plinth plus multiply blending
+   dissolves that white into the panel, so the product floats instead of the box.
+   The plinth stays light in dark mode too — multiply needs something light to
+   blend into, and a lit shelf under the product is the look we want anyway. */
 .card__media{
-  position:relative; aspect-ratio:4/5; overflow:hidden;
-  background:linear-gradient(150deg,var(--paper-2),var(--surface));
+  position:relative; aspect-ratio:4/5; overflow:hidden; isolation:isolate;
+  background:linear-gradient(155deg, var(--plinth) 0%, var(--plinth-2) 100%);
   cursor:zoom-in;
 }
 .card__media img{
   width:100%; height:100%; object-fit:contain; padding:22px;
+  mix-blend-mode:multiply;
   transition:transform .6s var(--ease), opacity .4s;
 }
 .card:hover .card__media img{transform:scale(1.06)}
@@ -339,8 +349,8 @@ button,input,select{font:inherit; color:inherit}
 }
 .sheet__close:hover{background:var(--paper-2); color:var(--ink)}
 .sheet__body{display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); max-height:88vh; overflow:auto}
-.sheet__media{background:var(--paper-2); display:grid; place-items:center; padding:34px; position:relative}
-.sheet__media img{max-height:380px; width:auto; object-fit:contain}
+.sheet__media{background:linear-gradient(155deg,var(--plinth),var(--plinth-2)); display:grid; place-items:center; padding:34px; position:relative; isolation:isolate}
+.sheet__media img{max-height:380px; width:auto; object-fit:contain; mix-blend-mode:multiply}
 .sheet__info{padding:34px 34px 30px; display:flex; flex-direction:column; gap:14px}
 .sheet__info h2{font-family:var(--serif); font-size:28px; font-weight:600; line-height:1.2; letter-spacing:-.025em; margin:0}
 .sheet__info p{margin:0; color:var(--ink-2); font-size:15px}
