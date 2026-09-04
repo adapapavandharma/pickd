@@ -76,7 +76,8 @@ function cardHTML(p, i) {
   <article class="card" style="--d:${Math.min(i, 11) * 55}ms" data-id="${esc(p.id)}">
     ${badge}
     <div class="card__media loading" data-open="${esc(p.id)}" role="button" tabindex="0" aria-label="View details for ${esc(p.title)}">
-      <img src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy" decoding="async" data-loading>
+      <img src="${esc(p.image)}" alt="${esc(p.title)}" decoding="async" data-loading
+           loading="${i < 4 ? "eager" : "lazy"}" fetchpriority="${i < 4 ? "high" : "auto"}">
     </div>
     <div class="card__body">
       <span class="card__cat">${esc(p.category || "Pick")}</span>
@@ -142,12 +143,39 @@ function render() {
     }
   });
 
+  revealOnScroll(grid);
+}
+
+/* Scroll-reveal, armed only when we can actually deliver it. The .js-reveal class
+   is what hides the cards, so if any of this is unavailable they simply stay visible. */
+function revealOnScroll(grid) {
+  const cards = $$(".card", grid);
+  if (!cards.length) return;
+
+  const canReveal =
+    "IntersectionObserver" in window &&
+    !matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (!canReveal) return;
+
+  document.documentElement.classList.add("js-reveal");
+
+  // Safety net: if the observer has not reported within 1.2s — a backgrounded tab,
+  // a throttled frame loop — drop the reveal entirely. Removing the class restores
+  // the plain visible state rather than starting a transition, because a tab that
+  // is not painting will not advance transitions either.
+  const failsafe = setTimeout(() => {
+    document.documentElement.classList.remove("js-reveal");
+  }, 1200);
+
   const io = new IntersectionObserver((entries, obs) => {
+    clearTimeout(failsafe);
     entries.forEach((e) => {
       if (e.isIntersecting) { e.target.classList.add("in"); obs.unobserve(e.target); }
     });
-  }, { rootMargin: "0px 0px -40px 0px" });
-  $$(".card", grid).forEach((c) => io.observe(c));
+  }, { rootMargin: "200px 0px -40px 0px" });
+
+  cards.forEach((c) => io.observe(c));
 }
 
 function renderChips() {
