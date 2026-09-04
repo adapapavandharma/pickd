@@ -8,7 +8,8 @@
     "extract": "node scripts/extract.mjs",
     "dev": "node scripts/serve.mjs",
     "start": "node scripts/serve.mjs",
-    "validate": "node scripts/validate.mjs"
+    "validate": "node scripts/validate.mjs",
+    "stamp": "node scripts/stamp.mjs"
   },
   "engines": {
     "node": ">=18"
