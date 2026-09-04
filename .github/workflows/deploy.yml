@@ -16,19 +16,30 @@ concurrency:
 
 jobs:
   deploy:
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Sanity-check the catalogue
-        run: node -e "const d=require('./data/products.json');if(!Array.isArray(d.products)||!d.products.length)throw new Error('products.json is empty');d.products.forEach(p=>{if(!p.id||!p.title||!p.url)throw new Error('incomplete product: '+JSON.stringify(p.id))});console.log(d.products.length+' products OK')"
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
 
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      - name: Validate catalogue
+        run: node scripts/validate.mjs
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v3
         with:
           path: .
-      - id: deployment
+
+      - name: Deploy
+        id: deployment
         uses: actions/deploy-pages@v4

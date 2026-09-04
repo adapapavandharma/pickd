@@ -7,7 +7,10 @@
   "scripts": {
     "extract": "node scripts/extract.mjs",
     "dev": "node scripts/serve.mjs",
-    "start": "node scripts/serve.mjs"
+    "start": "node scripts/serve.mjs",
+    "validate": "node scripts/validate.mjs"
   },
-  "engines": { "node": ">=18" }
+  "engines": {
+    "node": ">=18"
+  }
 }
