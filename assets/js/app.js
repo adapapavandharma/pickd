@@ -104,7 +104,7 @@ function cardHTML(p, i) {
     </div>
     <div class="card__body">
       <span class="card__cat">${esc(p.category || "Pick")}</span>
-      <h3 class="card__title">${esc(p.title)}</h3>
+      <h3 class="card__title"><a href="p/${esc(p.id)}.html">${esc(p.title)}</a></h3>
       <p class="card__blurb">${esc(p.blurb || "")}</p>
       ${p.rating ? `<div class="rating">${starsHTML(p.rating)}<span>${esc(reviews)}</span></div>` : ""}
       <div class="card__foot">
@@ -226,7 +226,8 @@ function openSheet(id) {
       <a class="btn btn--solid btn--block" href="${esc(p.url)}" target="_blank" rel="nofollow sponsored noopener">
         Check price on ${esc(p.merchant || "Amazon")}
       </a>
-      <p class="sheet__meta">Affiliate link · price and availability may have changed since ${esc(p.checkedAt || "last check")}.</p>
+      <a class="sheet__more" href="p/${esc(p.id)}.html">Read the full write-up &rarr;</a>
+      <p class="sheet__meta">Affiliate link · sample pricing, shown for demonstration.</p>
     </div>`;
 
   $("#sheet").showModal();

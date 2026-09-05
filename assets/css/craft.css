@@ -1,0 +1,113 @@
+/* ============================================================
+   Pickd — the craft page
+   A case-study layout: problem, decision, evidence. Deliberately more
+   technical-looking than the storefront without abandoning its palette.
+   ============================================================ */
+
+.craft{padding-bottom:90px}
+
+.chead{padding:clamp(34px,6vw,64px) 0 30px; max-width:66ch}
+.chead h1{
+  margin:8px 0 16px; font-family:var(--serif); font-weight:500;
+  font-size:clamp(34px,6vw,60px); line-height:1; letter-spacing:-.035em;
+}
+.chead h1 em{font-style:italic; font-weight:300; color:var(--accent)}
+.chead p{margin:0 0 12px; font-size:clamp(16.5px,2.2vw,19.5px); color:var(--ink-2); line-height:1.6}
+
+/* ---------- the numbers ---------- */
+.facts{
+  display:grid; gap:1px; margin:12px 0 56px;
+  grid-template-columns:repeat(auto-fit,minmax(148px,1fr));
+  background:var(--line); border:1px solid var(--line);
+  border-radius:var(--r-lg); overflow:hidden;
+}
+.fact{background:var(--surface); padding:20px 20px 18px}
+.fact b{
+  display:block; font-family:var(--sans); font-size:clamp(24px,3.4vw,31px);
+  font-weight:600; letter-spacing:-.028em; color:var(--ink); line-height:1.05;
+}
+.fact span{display:block; margin-top:6px; font-size:12.5px; color:var(--muted); line-height:1.45}
+
+/* ---------- case studies ---------- */
+.cases{display:flex; flex-direction:column; gap:0}
+.case{
+  border-top:1px solid var(--line); padding:44px 0;
+  display:grid; gap:30px; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
+  align-items:start;
+}
+@media (max-width:900px){ .case{grid-template-columns:1fr; gap:22px; padding:34px 0} }
+
+.case__lead{position:sticky; top:92px}
+@media (max-width:900px){ .case__lead{position:static} }
+.case__n{
+  font-family:var(--serif); font-size:13px; font-weight:600;
+  letter-spacing:.1em; color:var(--accent);
+}
+.case__lead h2{
+  margin:8px 0 12px; font-family:var(--serif); font-weight:600;
+  font-size:clamp(22px,3vw,30px); letter-spacing:-.026em; line-height:1.15;
+}
+.case__lead p{margin:0; font-size:15.5px; color:var(--ink-2); line-height:1.66}
+.case__body{display:flex; flex-direction:column; gap:18px; min-width:0}
+.case__body p{margin:0; font-size:16px; color:var(--ink-2); line-height:1.72; max-width:68ch}
+.case__body p strong{color:var(--ink)}
+
+/* ---------- evidence blocks ---------- */
+.ev{
+  border:1px solid var(--line); border-radius:var(--r-md);
+  background:var(--paper-2); overflow:hidden; min-width:0;
+}
+.ev__head{
+  display:flex; align-items:center; gap:9px; padding:9px 14px;
+  border-bottom:1px solid var(--line); background:var(--surface);
+  font-size:11.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--muted);
+}
+.ev__head::before{
+  content:""; width:7px; height:7px; border-radius:50%; background:var(--accent); flex:0 0 auto;
+}
+.ev pre{
+  margin:0; padding:15px 16px; overflow-x:auto;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:12.5px; line-height:1.66; color:var(--ink-2);
+  -moz-tab-size:2; tab-size:2;
+}
+.ev pre b{color:var(--ink); font-weight:600}
+.ev .pass{color:#0f7a3d; font-weight:600}
+.ev .fail{color:#b3402c; font-weight:600}
+.ev .warn{color:#9a6a12; font-weight:600}
+.ev .dim{color:var(--muted)}
+[data-theme="dark"] .ev .pass{color:#3fbb6d}
+[data-theme="dark"] .ev .fail{color:#e8836a}
+[data-theme="dark"] .ev .warn{color:#d6a955}
+
+.figure{
+  border:1px solid var(--line); border-radius:var(--r-md);
+  background:var(--surface); padding:20px 18px 14px;
+}
+.figure svg{width:100%; height:auto; display:block}
+.figure figcaption{margin-top:12px; font-size:12.5px; color:var(--muted); line-height:1.5; text-align:center}
+
+/* diagram tokens */
+.dg-box{fill:var(--surface); stroke:var(--line-2)}
+.dg-box--hit{fill:var(--accent-soft); stroke:var(--accent)}
+.dg-t{fill:var(--ink); font-size:12px; font-weight:600; font-family:var(--sans)}
+.dg-s{fill:var(--muted); font-size:10.5px; font-family:var(--sans)}
+.dg-l{stroke:var(--line-2); stroke-width:1.5; fill:none}
+.dg-l--hit{stroke:var(--accent); stroke-width:1.8}
+
+/* ---------- limits ---------- */
+.limits{
+  margin-top:52px; padding:28px 30px; border-radius:var(--r-lg);
+  background:var(--paper-2); border:1px solid var(--line);
+}
+.limits h2{margin:0 0 14px; font-family:var(--serif); font-size:23px; font-weight:600; letter-spacing:-.022em}
+.limits ul{margin:0; padding-left:20px; display:flex; flex-direction:column; gap:10px}
+.limits li{font-size:15.5px; color:var(--ink-2); line-height:1.66; max-width:72ch}
+.limits li strong{color:var(--ink)}
+
+.stackrow{display:flex; flex-wrap:wrap; gap:8px; margin-top:4px}
+.tag{
+  font-size:12px; padding:4px 11px; border-radius:var(--r-full);
+  background:var(--surface); border:1px solid var(--line); color:var(--ink-2);
+}
+.tag--none{border-style:dashed; color:var(--muted)}

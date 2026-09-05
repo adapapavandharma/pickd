@@ -32,6 +32,9 @@ jobs:
       - name: Validate catalogue
         run: node scripts/validate.mjs
 
+      - name: Generate product pages, guides and sitemap
+        run: node scripts/build.mjs
+
       - name: Cache-bust asset URLs
         run: node scripts/stamp.mjs
 

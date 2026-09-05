@@ -1,0 +1,221 @@
+{
+  "guides": [
+    {
+      "slug": "best-noise-cancelling-headphones",
+      "title": "The three noise-cancelling headphones worth buying",
+      "standfirst": "One is the best. One is the sensible one. One is for people who have already decided they live inside Apple. Everything else in this category is noise.",
+      "category": "Audio",
+      "updated": "2026-09-04",
+      "readingMinutes": 6,
+      "intro": [
+        "Noise cancelling is the rare feature where the marketing and the experience actually match. The first time you put on a good pair on a plane and the engine drone drops away, it stops being a spec and becomes the reason you own them.",
+        "The catch is that the category is enormous and almost entirely undifferentiated. There are perhaps four headphones that matter and about two hundred that exist. This is the short list, and each entry says who it is wrong for as well as who it is right for."
+      ],
+      "picks": [
+        {
+          "id": "B09XS7JWHH",
+          "award": "Best overall",
+          "awardStyle": "gold",
+          "verdict": "The quietest, and it is not especially close.",
+          "body": [
+            "The XM5 is the one to buy if the cancellation itself is what you are paying for. On low-frequency drone — aircraft, trains, the hum of an office HVAC — nothing else at any price reliably beats it. Sony finally fixed the call quality too, which was the standing embarrassment of the XM4.",
+            "Thirty hours of battery means charging becomes something you do occasionally rather than something you think about. Multipoint means your laptop and phone are both connected and it hands over without you touching anything."
+          ],
+          "bestFor": "Anyone who flies, commutes, or works in a room with other people in it.",
+          "skipIf": "You live out of a small bag. These no longer fold flat and the case is genuinely bulky — the XM4 packed better."
+        },
+        {
+          "id": "B08HMWZBXC",
+          "award": "Best value",
+          "awardStyle": "deal",
+          "verdict": "Roughly 80% of the Sony for a fraction of the money.",
+          "body": [
+            "This is the honest answer for most people. The cancellation is good rather than exceptional — it takes the edge off a train carriage rather than erasing it — but the gap is much smaller than the price gap.",
+            "The battery is absurd. Forty hours with cancellation on means you will forget what the charger looks like. And there is a real freedom in owning headphones you would be annoyed rather than devastated to lose."
+          ],
+          "bestFor": "Anyone who wants the feature without the flagship price, and anyone who loses things.",
+          "skipIf": "You care about calls. The microphones are adequate and no better, and the default tuning is bass-heavy until you go into the app and fix it."
+        },
+        {
+          "id": "B0BDHWDR12",
+          "award": "Best if you have an iPhone",
+          "verdict": "The transparency mode is the actual product.",
+          "body": [
+            "Buying these for the noise cancelling slightly misses the point. The reason to own them is transparency mode, which sounds so natural that you forget you are wearing anything — you can hold a conversation, order a coffee, cross a road. Nothing else this small does it as convincingly.",
+            "Inside the Apple ecosystem the switching between devices is effortless in a way that is hard to appreciate until you have it. Outside it, you are paying a large premium for features you cannot use."
+          ],
+          "bestFor": "iPhone owners who want something pocketable and hate over-ear headphones.",
+          "skipIf": "You use Android. Genuinely — buy something else, you lose most of what you are paying for."
+        }
+      ],
+      "compare": [
+        { "label": "Form", "values": { "B09XS7JWHH": "Over-ear", "B08HMWZBXC": "Over-ear", "B0BDHWDR12": "In-ear" } },
+        { "label": "Battery (ANC on)", "values": { "B09XS7JWHH": "~30 hours", "B08HMWZBXC": "~40 hours", "B0BDHWDR12": "~6 hours (+ case)" } },
+        { "label": "Folds flat", "values": { "B09XS7JWHH": "No", "B08HMWZBXC": "Yes", "B0BDHWDR12": "n/a" } },
+        { "label": "Good for calls", "values": { "B09XS7JWHH": "Yes", "B08HMWZBXC": "Adequate", "B0BDHWDR12": "Yes" } },
+        { "label": "Works well on Android", "values": { "B09XS7JWHH": "Yes", "B08HMWZBXC": "Yes", "B0BDHWDR12": "No" } }
+      ],
+      "closing": [
+        "If you want one sentence: buy the Soundcore unless you fly often, in which case buy the Sony, unless you own an iPhone and hate over-ear headphones, in which case buy the AirPods.",
+        "What none of these will do is fix a bad listening environment permanently. Noise cancelling works best on constant low-frequency sound and much less well on speech — an open-plan office full of talking is the hardest case for all three, and no headphone solves it completely."
+      ],
+      "faq": [
+        {
+          "q": "Does noise cancelling damage your hearing?",
+          "a": "The opposite, generally. The mechanism is destructive interference, not volume — and because you are not fighting background noise, most people listen at lower volumes with cancellation on than without it."
+        },
+        {
+          "q": "Is the difference between good and great cancellation actually noticeable?",
+          "a": "On a plane, yes, immediately. In a quiet room, barely. Buy for the environment you will actually use them in rather than for the specification."
+        }
+      ]
+    },
+    {
+      "slug": "the-travel-kit",
+      "title": "Four things that make travelling less bad",
+      "standfirst": "Not a packing list. Four specific objects that each remove one recurring annoyance from a trip, and nothing that only earns its space on the perfect journey.",
+      "category": "Travel",
+      "updated": "2026-09-04",
+      "readingMinutes": 5,
+      "intro": [
+        "Most travel gear lists are aspirational fiction — a packing cube system for a trip you will never take. This is the shorter, duller version: four things that each solve a problem you will definitely have.",
+        "The test for inclusion was simple. Would you notice it was missing?"
+      ],
+      "picks": [
+        {
+          "id": "B09XS7JWHH",
+          "award": "For the flight",
+          "awardStyle": "gold",
+          "verdict": "Turns a six-hour flight into a shorter one.",
+          "body": [
+            "Engine drone is exactly the kind of constant low-frequency noise that cancellation handles best, which is why headphones that are merely good at home feel transformative at altitude. You arrive less exhausted, which is the whole argument."
+          ],
+          "bestFor": "Long flights and open-plan hotel lobbies.",
+          "skipIf": "You are travelling carry-on only and counting every litre — the case is large."
+        },
+        {
+          "id": "B0932QJ2JZ",
+          "award": "For the bag you checked",
+          "verdict": "The single best argument for the Find My network.",
+          "body": [
+            "Put one in checked luggage before your next flight and you will understand within one trip. When a bag goes missing, the difference between 'the airline is looking into it' and 'it is at the airport you left four hours ago' is the difference between an afternoon lost and an afternoon fine.",
+            "The four-pack is the only sensible way to buy them — one for the case, one for the daypack, one for keys, one spare."
+          ],
+          "bestFor": "Checked bags, and anyone who has ever left a jacket somewhere.",
+          "skipIf": "You use Android. There is no real equivalent experience."
+        },
+        {
+          "id": "B09VPHVT2Z",
+          "award": "For the day you cannot find a socket",
+          "verdict": "A second laptop battery that happens to charge phones too.",
+          "body": [
+            "Most power banks are a phone top-up dressed up as insurance. 140W of output means this one actually runs a laptop rather than slowing its decline, which is what you need on a long layover or a train with no working outlets.",
+            "The display showing real input and output wattage sounds like a gimmick until the first time it tells you the cable you are using is the slow one."
+          ],
+          "bestFor": "Long transit days and anyone who works while travelling.",
+          "skipIf": "You only need to top up a phone. It is a heavy brick and you would be carrying it for nothing."
+        },
+        {
+          "id": "B08KTZ8249",
+          "award": "For the waiting",
+          "awardStyle": "deal",
+          "verdict": "Weeks of battery and a library that weighs nothing.",
+          "body": [
+            "Travel is mostly waiting, and a Kindle is the most reliable way to convert waiting into something you are glad you did. Weeks of battery removes one more charger from the bag, and the front light means you can read on a night flight without waking the person beside you.",
+            "It is waterproof, which matters more by a pool than it sounds."
+          ],
+          "bestFor": "Anyone whose phone battery dies because they read on it.",
+          "skipIf": "You genuinely do not read. It will stay in the drawer, as every unread Kindle does."
+        }
+      ],
+      "compare": [
+        { "label": "Weight class", "values": { "B09XS7JWHH": "Bulky", "B0932QJ2JZ": "Negligible", "B09VPHVT2Z": "Heavy", "B08KTZ8249": "Light" } },
+        { "label": "Needs charging on a trip", "values": { "B09XS7JWHH": "Rarely", "B0932QJ2JZ": "No", "B09VPHVT2Z": "It is the charger", "B08KTZ8249": "No" } },
+        { "label": "Airline carry-on safe", "values": { "B09XS7JWHH": "Yes", "B0932QJ2JZ": "Yes", "B09VPHVT2Z": "Yes, under the 100Wh limit", "B08KTZ8249": "Yes" } },
+        { "label": "Works without a phone", "values": { "B09XS7JWHH": "Yes", "B0932QJ2JZ": "No", "B09VPHVT2Z": "Yes", "B08KTZ8249": "Yes" } }
+      ],
+      "closing": [
+        "If you only take one: the headphones, on any trip involving a plane. If the trip is mostly trains and hotels, the Kindle earns its place more often.",
+        "The power bank is the one to leave behind for a short trip. It is genuinely heavy, and on a two-day trip with reliable sockets it is dead weight you carry the whole way."
+      ],
+      "faq": [
+        {
+          "q": "Can you fly with a 24,000mAh power bank?",
+          "a": "Yes — it sits under the 100Wh threshold airlines generally apply, so it travels in carry-on. Power banks must not go in checked luggage, which is a rule worth remembering the one time you are tempted."
+        },
+        {
+          "q": "Do trackers actually help when an airline loses a bag?",
+          "a": "They change the conversation rather than the outcome. Knowing exactly where a bag is turns an open-ended claim into a specific request, and staff respond very differently to the second one."
+        }
+      ]
+    },
+    {
+      "slug": "make-an-old-computer-fast-again",
+      "title": "Make an old computer feel new for under a hundred",
+      "standfirst": "Before you replace a four-year-old machine, spend twenty minutes and a fraction of the money. Most computers do not get slow — they get bottlenecked, and usually in the same two places.",
+      "category": "Computing",
+      "updated": "2026-09-04",
+      "readingMinutes": 5,
+      "intro": [
+        "Computers rarely die. They get slow enough that replacing them feels justified, and almost always for reasons that have nothing to do with the processor. The disk is the usual culprit, and the input devices are the usual reason the machine feels unpleasant even when it is fast.",
+        "This is the order to spend money in, cheapest and highest-impact first. If the first one does not fix it, the second probably will not either — at that point you have a genuine case for a new machine."
+      ],
+      "picks": [
+        {
+          "id": "B07YFF3JCN",
+          "award": "Do this first",
+          "awardStyle": "gold",
+          "verdict": "The single biggest change per pound you can make to an old computer.",
+          "body": [
+            "If the machine is running a spinning disk, or an early SATA SSD, this is the upgrade. Boot times go from a minute to a few seconds, applications open instead of thinking about it, and the general sense that the computer is arguing with you disappears.",
+            "It is twenty minutes of work, one screw on most laptops, and no cables. Nothing else on this list comes close on impact per pound."
+          ],
+          "bestFor": "Any machine three years old or more that still has a mechanical drive.",
+          "skipIf": "You move genuinely huge files every day. It is DRAM-less, so sustained large writes slow once the cache fills — irrelevant for normal use, noticeable for video work."
+        },
+        {
+          "id": "B09HM94VDS",
+          "award": "Do this second",
+          "verdict": "Fixes how the machine feels rather than how fast it is.",
+          "body": [
+            "A faster disk fixes waiting. This fixes the hundreds of small frictions in between — the scroll wheel that free-spins through a thousand-row spreadsheet, the silent clicks, the three devices on one button.",
+            "It is a lot of money for a mouse and it remains the easiest recommendation here. People who buy it stop shopping for mice."
+          ],
+          "bestFor": "Anyone who spends hours a day in documents, spreadsheets or code.",
+          "skipIf": "You have small hands, or you are left-handed. It is shaped firmly for large right hands and no amount of wanting will change that."
+        },
+        {
+          "id": "B0BSHF7WHW",
+          "award": "If neither worked",
+          "verdict": "The honest end of the road.",
+          "body": [
+            "If the disk is already fast and the machine still struggles, you have hit a real ceiling and no accessory fixes that. The argument for spending properly at that point is lifespan — silence under load, a full working day of battery, and enough headroom that year four still feels quick.",
+            "Configure it carefully at purchase. Memory and storage are not upgradeable afterwards and Apple prices both with open contempt."
+          ],
+          "bestFor": "People who compile, render or edit for a living.",
+          "skipIf": "You are replacing a machine that is merely slow. Try the twenty-pound fix first — it works more often than it has any right to."
+        }
+      ],
+      "compare": [
+        { "label": "Fixes", "values": { "B07YFF3JCN": "Waiting", "B09HM94VDS": "Friction", "B0BSHF7WHW": "Ceilings" } },
+        { "label": "Install time", "values": { "B07YFF3JCN": "~20 minutes", "B09HM94VDS": "Immediate", "B0BSHF7WHW": "An afternoon of migration" } },
+        { "label": "Reversible", "values": { "B07YFF3JCN": "Yes", "B09HM94VDS": "Yes", "B0BSHF7WHW": "Not really" } },
+        { "label": "Helps a machine that is already fast", "values": { "B07YFF3JCN": "No", "B09HM94VDS": "Yes", "B0BSHF7WHW": "Yes" } }
+      ],
+      "closing": [
+        "The order matters more than the products. A great mouse on a machine that takes a minute to boot is lipstick; a fast disk on a machine you hate touching is only half a fix.",
+        "One thing this guide cannot sell you that often matters more than any of it: more memory. If the machine is swapping constantly, RAM beats everything here — and on most modern laptops it is soldered, which is the real reason old machines get replaced."
+      ],
+      "faq": [
+        {
+          "q": "Will an SSD help if the computer is only a year or two old?",
+          "a": "Almost certainly not — anything recent already ships with NVMe storage. This upgrade is for machines with a mechanical drive or an early SATA SSD, which is mostly 2018 and earlier."
+        },
+        {
+          "q": "How do I know whether the disk is the bottleneck?",
+          "a": "Open the task manager while the machine feels slow. If disk usage is pinned near 100% while the processor is mostly idle, you have your answer."
+        }
+      ]
+    }
+  ]
+}

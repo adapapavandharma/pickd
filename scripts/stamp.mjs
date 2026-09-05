@@ -34,7 +34,18 @@ const SHARED_MODULES = ["assets/js/analytics.js"];
 const hashOf = (rel) =>
   crypto.createHash("sha256").update(fs.readFileSync(path.join(ROOT, rel))).digest("hex").slice(0, 8);
 
-const htmlFiles = fs.readdirSync(ROOT).filter((f) => f.endsWith(".html"));
+/** Every .html in the site, including the generated ones under /p and /guides. */
+function findHtml(dir = ROOT, out = []) {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (entry.name.startsWith(".") || entry.name === "node_modules" || entry.name === "scripts") continue;
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) findHtml(full, out);
+    else if (entry.name.endsWith(".html")) out.push(path.relative(ROOT, full).split(path.sep).join("/"));
+  }
+  return out;
+}
+
+const htmlFiles = findHtml();
 const jsFiles = fs.existsSync(path.join(ROOT, "assets/js"))
   ? fs.readdirSync(path.join(ROOT, "assets/js")).filter((f) => f.endsWith(".js")).map((f) => `assets/js/${f}`)
   : [];
@@ -63,15 +74,17 @@ for (const page of htmlFiles) {
   const file = path.join(ROOT, page);
   const src = fs.readFileSync(file, "utf8");
 
+  // The prefix group captures any number of ../ so pages nested under /p and
+  // /guides are stamped too; the hash is always taken from the file itself.
   const next = src.replace(
-    /(href|src)="(assets\/[^"?]+\.(?:css|js))(?:\?v=[a-f0-9]+)?"/g,
-    (match, attr, rel) => {
+    /(href|src)="((?:\.\.\/)*)(assets\/[^"?]+\.(?:css|js))(?:\?v=[a-f0-9]+)?"/g,
+    (match, attr, prefix, rel) => {
       if (!fs.existsSync(path.join(ROOT, rel))) {
         console.warn(`  warn  referenced but missing: ${rel} (in ${page})`);
         return match;
       }
       stamped++;
-      return `${attr}="${rel}?v=${hashOf(rel)}"`;
+      return `${attr}="${prefix}${rel}?v=${hashOf(rel)}"`;
     }
   );
 

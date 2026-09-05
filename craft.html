@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Craft — how Pickd is built</title>
+<meta name="description" content="The engineering behind the Pickd demo: pulling product images from a source that blocks scrapers, choosing chart colours by measurement, and three bugs the deploy taught me.">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://adapapavandharma.github.io/pickd/craft.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Craft — how Pickd is built">
+<meta property="og:description" content="Problem, decision, evidence. Including the three bugs that shipped before they were caught.">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#127793;</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css?v=1d8b6e98">
+<link rel="stylesheet" href="assets/css/article.css?v=8e1c38e8">
+<link rel="stylesheet" href="assets/css/craft.css?v=95f42d9e">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="topbar" id="topbar">
+  <div class="wrap topbar__inner">
+    <a class="brand" href="index.html">
+      <span class="brand__mark" aria-hidden="true"></span>
+      <span class="brand__name">Pickd</span>
+      <span class="pill">Demo</span>
+    </a>
+    <!--nav--><nav class="tabs" aria-label="Sections"><a href="index.html">Shelf</a><a href="guides/index.html">Guides</a><a href="dashboard.html">Performance</a><a href="craft.html" aria-current="page">Craft</a></nav><!--/nav-->
+    <button class="iconbtn" id="theme" type="button" aria-label="Toggle dark mode">
+      <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg>
+      <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.2 8.2 0 019.5 4 8.5 8.5 0 1020 14.5z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main" class="wrap craft">
+
+  <header class="chead">
+    <p class="eyebrow">How this was built</p>
+    <h1>The parts that were <em>actually hard</em></h1>
+    <p>Anyone can put a product grid on a page. These are the five problems underneath it that took real decisions — including the three bugs that shipped before they were caught, which are the more useful half.</p>
+    <p>Every claim here is checkable against the source, and the terminal output is copied from the runs, not written for the page.</p>
+  </header>
+
+  <div class="facts">
+    <div class="fact"><b>0</b><span>runtime dependencies. Nothing to install, audit or patch.</span></div>
+    <div class="fact"><b>&lt;50&nbsp;KB</b><span>of CSS and JS on the storefront, uncompressed.</span></div>
+    <div class="fact"><b>20 / 22</b><span>pages generated from two JSON files.</span></div>
+    <div class="fact"><b>3,280</b><span>lines of hand-written CSS, JS and build scripts.</span></div>
+  </div>
+
+  <div class="cases">
+
+    <!-- 1 -->
+    <section class="case">
+      <div class="case__lead">
+        <span class="case__n">01</span>
+        <h2>Getting product photos out of a source that blocks scrapers</h2>
+        <p>Amazon asks that images come from their API, and blocks automated page fetches anyway. So the obvious approach is both against the rules and unreliable.</p>
+      </div>
+      <div class="case__body">
+        <p>The answer was a <strong>three-tier chain that stops at the first real image</strong>. If Associates API credentials exist, it uses them — the correct path, which also returns live prices. Without them it falls back to Amazon's per-ASIN image endpoint, which is what their own SiteStripe embeds resolve to. For non-Amazon merchants it reads OpenGraph tags.</p>
+
+        <figure class="figure">
+          <svg viewBox="0 0 660 250" role="img" aria-label="Diagram: a product link is parsed to an ASIN, then tried against PA-API, the image CDN and OpenGraph in turn, validated, and saved locally.">
+            <rect class="dg-box" x="4" y="102" width="104" height="46" rx="9"/>
+            <text class="dg-t" x="56" y="122" text-anchor="middle">Product link</text>
+            <text class="dg-s" x="56" y="137" text-anchor="middle">or bare ASIN</text>
+            <path class="dg-l" d="M108 125 H150"/>
+
+            <rect class="dg-box" x="150" y="102" width="92" height="46" rx="9"/>
+            <text class="dg-t" x="196" y="122" text-anchor="middle">Parse ASIN</text>
+            <text class="dg-s" x="196" y="137" text-anchor="middle">rebuild URL</text>
+
+            <path class="dg-l" d="M242 125 H272 V40 H300"/>
+            <path class="dg-l--hit" d="M242 125 H272 V125 H300"/>
+            <path class="dg-l" d="M242 125 H272 V210 H300"/>
+
+            <rect class="dg-box" x="300" y="18" width="140" height="44" rx="9"/>
+            <text class="dg-t" x="370" y="38" text-anchor="middle">1 · PA-API 5.0</text>
+            <text class="dg-s" x="370" y="52" text-anchor="middle">if credentials exist</text>
+
+            <rect class="dg-box--hit" x="300" y="103" width="140" height="44" rx="9"/>
+            <text class="dg-t" x="370" y="123" text-anchor="middle">2 · Image CDN</text>
+            <text class="dg-s" x="370" y="137" text-anchor="middle">by ASIN — in use here</text>
+
+            <rect class="dg-box" x="300" y="188" width="140" height="44" rx="9"/>
+            <text class="dg-t" x="370" y="208" text-anchor="middle">3 · OpenGraph</text>
+            <text class="dg-s" x="370" y="222" text-anchor="middle">other merchants</text>
+
+            <path class="dg-l" d="M440 40 H472 V125"/>
+            <path class="dg-l--hit" d="M440 125 H500"/>
+            <path class="dg-l" d="M440 210 H472 V125"/>
+
+            <rect class="dg-box" x="500" y="102" width="98" height="46" rx="9"/>
+            <text class="dg-t" x="549" y="120" text-anchor="middle">Sniff bytes</text>
+            <text class="dg-s" x="549" y="136" text-anchor="middle">reject placeholder</text>
+
+            <path class="dg-l--hit" d="M598 125 H628"/>
+            <circle class="dg-box--hit" cx="640" cy="125" r="13"/>
+            <path class="dg-l--hit" d="M634 125 l4 4 l8 -9" stroke-linecap="round" stroke-linejoin="round"/>
+            <text class="dg-s" x="640" y="155" text-anchor="middle">saved</text>
+          </svg>
+          <figcaption>The chain stops at the first tier that returns a real image. Tier 2 is what is running on this site.</figcaption>
+        </figure>
+
+        <p>The trap is that <strong>Amazon does not return a 404 for a missing image</strong>. It returns a roughly 43-byte transparent GIF with a <code>200 OK</code>, so a naive fetcher happily saves a blank file and the grid fills with invisible products. The fix is to check magic bytes and size rather than status code:</p>
+
+        <div class="ev">
+          <div class="ev__head">scripts/extract.mjs</div>
+<pre>/* Amazon serves a tiny transparent GIF for "no image". Reject those. */
+function isRealImage(buf) {
+  if (!buf || buf.length &lt; 2500) return false;
+  const isGif  = buf[0] === 0x47 &amp;&amp; buf[1] === 0x49 &amp;&amp; buf[2] === 0x46;
+  const isJpg  = buf[0] === 0xff &amp;&amp; buf[1] === 0xd8;
+  const isPng  = buf[0] === 0x89 &amp;&amp; buf[1] === 0x50;
+  const isWebp = buf.slice(0, 4).toString() === "RIFF";
+  if (isGif) return false;
+  return isJpg || isPng || isWebp;
+}</pre>
+        </div>
+
+        <p>Images are then <strong>downloaded and served locally</strong> rather than hot-linked, so a rotated CDN path cannot silently empty the shelf. The PA-API tier signs its own AWS SigV4 requests by hand — there is no SDK in this project.</p>
+      </div>
+    </section>
+
+    <!-- 2 -->
+    <section class="case">
+      <div class="case__lead">
+        <span class="case__n">02</span>
+        <h2>Choosing chart colours by measurement instead of taste</h2>
+        <p>A warm palette that looks right to me is not evidence that it works for someone with deuteranopia, or at 3:1 against a dark surface.</p>
+      </div>
+      <div class="case__body">
+        <p>So I ran candidates through a validator instead of trusting my eye. <strong>My first palette failed</strong> — three colours were too desaturated to read as distinct hues, and two were closer together than full-colour vision can reliably separate:</p>
+
+        <div class="ev">
+          <div class="ev__head">attempt 1 — rejected</div>
+<pre><span class="pass">[PASS]</span> Lightness band       all 5 inside L 0.43–0.77
+<span class="fail">[FAIL]</span> Chroma floor         below floor (reads gray):
+       <span class="dim">#2d7d74 → 0.078   #4a6fa5 → 0.095   #8c4f6d → 0.090</span>
+<span class="pass">[PASS]</span> CVD separation       worst adjacent ΔE 8.4 (protan)
+<span class="fail">[FAIL]</span> Normal-vision floor  #8c4f6d ↔ #4a6fa5 ΔE 13.7 — below 15,
+       <span class="dim">hard to tell apart even with full colour vision</span>
+
+<span class="fail">→ FAILED</span></pre>
+        </div>
+
+        <p>Two more rounds of re-stepping — pushing chroma up and separating the plum from the blue — got there. The palette now shipping passes every hard gate against <em>both</em> the light and dark surfaces this site actually renders on:</p>
+
+        <div class="ev">
+          <div class="ev__head">shipped palette — light surface #fffdfa</div>
+<pre><span class="pass">[PASS]</span> Lightness band       all 5 inside L 0.43–0.77
+<span class="pass">[PASS]</span> Chroma floor         all 5 ≥ 0.1
+<span class="pass">[PASS]</span> CVD separation       worst adjacent ΔE 11.3 (deutan) · tritan 27.7
+<span class="pass">[PASS]</span> Normal-vision floor  worst adjacent ΔE 24.9
+<span class="warn">[WARN]</span> Contrast vs surface  #e0a41b at 2.18 — relief required
+
+<span class="pass">→ ALL CHECKS PASS</span></pre>
+        </div>
+
+        <p>That remaining warning is not dismissed. It obliges the chart to carry the value another way, so <strong>every segment is directly labelled and every chart has a table-view twin</strong> — no number on the dashboard is reachable only by hovering. The dark steps are a separately chosen set validated against the dark surface, not an automatic flip of the light ones.</p>
+
+        <div class="stackrow">
+          <span class="tag">5 slots</span>
+          <span class="tag">light + dark validated</span>
+          <span class="tag">deutan · protan · tritan</span>
+          <span class="tag">table-view twin on every chart</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 -->
+    <section class="case">
+      <div class="case__lead">
+        <span class="case__n">03</span>
+        <h2>Three bugs that shipped before I caught them</h2>
+        <p>The useful part of any build log. All three were found on the live site, not in theory, and all three are the same shape: something that fails <em>closed</em>.</p>
+      </div>
+      <div class="case__body">
+        <p><strong>The workflow that failed in zero seconds.</strong> The first deploy failed with no logs and no jobs. The cause was a colon-space inside an unquoted YAML scalar — legal JavaScript, illegal YAML:</p>
+
+        <div class="ev">
+          <div class="ev__head">.github/workflows — the broken line</div>
+<pre>run: node -e "... throw new Error('incomplete product<span class="fail">: </span>' + id) ..."
+<span class="dim">                                                  ↑ ends the scalar</span></pre>
+        </div>
+
+        <p>The fix was to stop cramming a program into a YAML string. That check now lives in <code>scripts/validate.mjs</code>, where it also runs locally and does considerably more: required fields, duplicate IDs, images actually present on disk, price types, and a warning for any Amazon link missing its affiliate tag.</p>
+
+        <p><strong>Cards that were invisible unless JavaScript won a race.</strong> Products were hidden at <code>opacity:0</code> in CSS and only revealed by an <code>IntersectionObserver</code> callback. Any failure of that callback — a script error, a blocked observer, a tab the browser never paints — left the entire shelf blank with no way to recover. A scroll animation had been given the power to delete the content.</p>
+
+        <p>Cards are now <strong>visible by default</strong>. The reveal is opt-in behind a class that JavaScript only adds once it has a live observer, plus a timeout that removes the class outright rather than starting a transition — because a tab that is not painting will not advance transitions either:</p>
+
+        <div class="ev">
+          <div class="ev__head">assets/js/app.js</div>
+<pre>document.documentElement.classList.add("js-reveal");
+
+// If the observer has not reported within 1.2s, drop the reveal entirely.
+const failsafe = setTimeout(() =&gt; {
+  document.documentElement.classList.remove("js-reveal");
+}, 1200);</pre>
+        </div>
+
+        <p><strong>Fresh HTML served with a stale stylesheet.</strong> Caught live. GitHub Pages sets <code>max-age=600</code>, so for ten minutes after a deploy a returning visitor could get the new page and the previous CSS. In this case that combination reproduced the invisible-cards bug exactly — the old stylesheet still hid cards unconditionally while the new script no longer added the class it keyed on.</p>
+
+        <p>Assets are now stamped with a hash of their own contents, so a URL changes exactly when the file does and unchanged files stay cached. It covers a second level most implementations miss: <strong>ES module specifiers are fetched independently of the page</strong>, so a stamped <code>app.js</code> is worthless if the <code>analytics.js</code> it imports comes from cache.</p>
+
+        <div class="ev">
+          <div class="ev__head">deployed output</div>
+<pre><span class="dim">index.html</span>      styles.css?v=<b>ac364028</b>   app.js?v=<b>1a1c3288</b>
+<span class="dim">dashboard.html</span>  dashboard.css?v=<b>14fff9d0</b>  dashboard.js?v=<b>c0c66355</b>
+<span class="dim">app.js</span>          import "./analytics.js?v=<b>9da3dafb</b>"</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 -->
+    <section class="case">
+      <div class="case__lead">
+        <span class="case__n">04</span>
+        <h2>Charts with no charting library</h2>
+        <p>Every mark on the dashboard is SVG this project draws itself. Not for purity — for the ~90 KB and the control.</p>
+      </div>
+      <div class="case__body">
+        <p>A charting library would have been faster to write and harder to hold to a standard. Drawing the marks directly means one spec applies everywhere and can be checked in the rendered DOM rather than trusted:</p>
+
+        <div class="ev">
+          <div class="ev__head">measured in the live page</div>
+<pre>categoryBarWidths   <b>[24,24,24,24,24,24,24,24,24,24]</b>  <span class="dim">cap 24px</span>
+topBarHeights       <b>[24,24,24,24,24,24,24,24,24,24]</b>
+stacked-bar gaps    <b>[2,2,2,2]</b>                       <span class="dim">surface, not strokes</span>
+gridline dasharray  <b>none</b>                            <span class="dim">hairline, solid</span>
+line stroke-width   <b>2</b>
+axis text fill      <b>rgb(133,122,112)</b>                <span class="dim">muted token, not series colour</span></pre>
+        </div>
+
+        <p>Bars capped at 24px so the band keeps its air, 4px rounded data-ends squared at the baseline, a 2px gap in the surface colour doing the separating rather than a stroke drawn around each mark, and area fills at 10% opacity — a wash, never a saturated block. Text never wears the data colour; identity comes from the swatch beside it.</p>
+
+        <p>The interaction layer is the part libraries usually get wrong: the time-series chart has a crosshair with a tooltip <strong>and an arrow-key equivalent</strong>, focusable and announced, because a tooltip that is the only route to a value excludes anyone not using a mouse.</p>
+      </div>
+    </section>
+
+    <!-- 5 -->
+    <section class="case">
+      <div class="case__lead">
+        <span class="case__n">05</span>
+        <h2>Two JSON files, twenty pages</h2>
+        <p>The catalogue is the source of truth. Product pages, guides, the index, the sitemap and the navigation are all downstream of it.</p>
+      </div>
+      <div class="case__body">
+        <p>Adding a product means adding a line to <code>data/links.txt</code> and running the extractor. Everything else follows: a product page with structured data, its appearance in any guide that references it, the cross-links in both directions, and a sitemap entry.</p>
+
+        <div class="ev">
+          <div class="ev__head">npm run build</div>
+<pre>  16 product pages
+  3 guides + index
+  20 pages generated, sitemap rebuilt, nav synced into 3 hand-written page(s)</pre>
+        </div>
+
+        <p>The generator also <strong>owns the navigation on every page including the hand-written ones</strong>, rewriting it between marker comments — so there is exactly one definition of the nav and no page can drift out of sync as the site grows.</p>
+
+        <p>Asset paths are depth-aware rather than absolute, which is why a page at <code>/p/</code> works identically on a project page, a custom domain, or opened from a local folder. Product pages and guides are <strong>fully rendered in the HTML</strong> — every word is there with JavaScript disabled, which is what search engines and slow connections actually get.</p>
+      </div>
+    </section>
+  </div>
+
+  <section class="limits">
+    <h2>What this deliberately is not</h2>
+    <ul>
+      <li><strong>Not a live storefront.</strong> The affiliate tag is a placeholder. Prices and ratings are sample data, and so is the entire 90-day dashboard history — it is generated from a seeded, deterministic random number generator so the numbers hold still between reloads. Real clicks made on this site <em>are</em> recorded and folded in.</li>
+      <li><strong>Not a hosted analytics product.</strong> Click tracking writes to <code>localStorage</code>, which means it is per-browser and cannot be aggregated. In production that layer becomes a server; the schema and the aggregation code would not change.</li>
+      <li><strong>Not tested.</strong> There is no test suite. Verification here was done by measuring the rendered DOM and the deployed output, which is honest but is not the same thing.</li>
+      <li><strong>Not using PA-API.</strong> Live pricing needs an approved Associates account with qualifying sales. The signing code is written and the fallback chain is built around its absence.</li>
+    </ul>
+  </section>
+
+  <section class="cta-strip" style="margin-top:34px">
+    <p>All of it is readable — the extractor, the generator, the chart code and the commit history that includes each of the bugs above.</p>
+    <a class="btn btn--solid" href="https://github.com/adapapavandharma/pickd" rel="noopener">Read the source on GitHub</a>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__inner">
+    <div class="foot__brand"><span class="brand__mark" aria-hidden="true"></span><strong>Pickd</strong></div>
+    <div class="foot__note">
+      <strong>What this is.</strong> A demonstration build — an editorial affiliate storefront with a working
+      analytics layer, made to show the finished article rather than describe it. The products and images are real;
+      the affiliate tag is a placeholder and every figure on the dashboard is sample data.
+      <a href="https://github.com/adapapavandharma/pickd">Source on GitHub &rarr;</a>
+    </div>
+    <p class="foot__meta">© <span id="year">2026</span> · <a href="index.html">Back to the shelf</a></p>
+  </div>
+</footer>
+
+<script src="assets/js/page.js?v=52781ebe" type="module"></script>
+</body>
+</html>

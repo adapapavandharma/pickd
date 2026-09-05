@@ -6,10 +6,11 @@
   "description": "An editorial affiliate storefront. Static site + a link-to-product extractor.",
   "scripts": {
     "extract": "node scripts/extract.mjs",
-    "dev": "node scripts/serve.mjs",
+    "dev": "node scripts/build.mjs && node scripts/serve.mjs",
     "start": "node scripts/serve.mjs",
     "validate": "node scripts/validate.mjs",
-    "stamp": "node scripts/stamp.mjs"
+    "stamp": "node scripts/stamp.mjs",
+    "build": "node scripts/build.mjs"
   },
   "engines": {
     "node": ">=18"

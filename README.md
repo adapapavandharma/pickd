@@ -3,13 +3,28 @@
 **A demonstration build for affiliate operators** — an editorial storefront wired to a working analytics layer, so you can see the finished article instead of reading a description of it.
 
 - **Storefront** → https://adapapavandharma.github.io/pickd/
+- **Buying guides** → https://adapapavandharma.github.io/pickd/guides/
 - **Dashboard** → https://adapapavandharma.github.io/pickd/dashboard.html
+- **Craft — how it's built** → https://adapapavandharma.github.io/pickd/craft.html
 
-Static site. No framework, no build step, no dependencies — `npm install` does nothing because there is nothing to install. The repo root *is* the site.
+Static site, no framework, **zero dependencies** — `npm install` does nothing because there is nothing to install. A small generator turns two JSON files into 20 of the 22 pages.
 
 > **This is a demo, not a live storefront.** The products, images and links are real; the affiliate tag is a placeholder, and prices, ratings and every dashboard figure are sample data. It is labelled as such on the site itself.
 
 ---
+
+## The layers
+
+```
+/                        the shelf — 16 products, filter, search, sort   (hand-written)
+/p/<asin>.html           a page per product, cross-linked to guides      (generated)
+/guides/                 the guide index                                 (generated)
+/guides/<slug>.html      a buying guide with picks and comparison        (generated)
+/dashboard.html          affiliate performance                           (hand-written)
+/craft.html              how it was built, with evidence                 (hand-written)
+```
+
+Products and guides link **both ways** — a product page lists every guide that features it and what award it won there; a guide links to every product page. Add a product and its guide appearances, cross-links and sitemap entry follow automatically.
 
 ## What it demonstrates
 
@@ -19,7 +34,9 @@ Static site. No framework, no build step, no dependencies — `npm install` does
 
 **3. An analytics layer that actually measures something.** Every affiliate click on the storefront is recorded and appears on the dashboard. Click a product, open Performance, and your click is in the numbers.
 
-**4. Charts built to a standard, not to taste.** Hand-drawn SVG — no charting library. Bars capped at 24px with 4px rounded data-ends, 2px surface gaps doing the separating, hairline solid gridlines, crosshair tooltips with keyboard equivalents, and a table-view twin on every chart so no value is reachable only by hovering. The categorical palette was run through a colour-vision-deficiency and contrast validator, not eyeballed.
+**4. The editorial layer affiliate sites actually earn from.** Buying guides with ranked picks, awards, a side-by-side comparison table, "best for / skip it if" on every pick, and an FAQ — plus a full page per product. All generated, all with `Product`, `ItemList`, `BreadcrumbList` and `FAQPage` structured data, and all fully rendered in the HTML so they work with JavaScript switched off.
+
+**5. Charts built to a standard, not to taste.** Hand-drawn SVG — no charting library. Bars capped at 24px with 4px rounded data-ends, 2px surface gaps doing the separating, hairline solid gridlines, crosshair tooltips with keyboard equivalents, and a table-view twin on every chart so no value is reachable only by hovering. The categorical palette was run through a colour-vision-deficiency and contrast validator, not eyeballed.
 
 ---
 
@@ -89,8 +106,11 @@ node scripts/serve.mjs        # http://localhost:4173
 | Task | Command |
 |---|---|
 | Add products | Edit `data/links.txt`, then `npm run extract -- --tag yourtag-20` |
-| Check the catalogue | `npm run validate` |
-| Preview locally | `npm run dev` |
+| Regenerate pages | `npm run build` |
+| Check catalogue + guides | `npm run validate` |
+| Build and preview | `npm run dev` |
+
+Order matters: `build` → `stamp`. The generator rewrites pages, the stamper adds content hashes to what it produced. CI runs validate → build → stamp → deploy.
 
 ---
 
@@ -102,6 +122,7 @@ node scripts/serve.mjs        # http://localhost:4173
 | Colours, type, spacing | CSS custom properties at the top of [`assets/css/styles.css`](assets/css/styles.css) |
 | Chart palette | Token block at the top of [`assets/css/dashboard.css`](assets/css/dashboard.css) |
 | Hero and section copy | [`index.html`](index.html) |
+| Guides | [`data/guides.json`](data/guides.json) — picks reference products by ASIN |
 | Categories | Just the `category` field on each product — the chips build themselves |
 | Badges | `badge` plus `badgeStyle`: `gold`, `deal`, or omit |
 
@@ -115,7 +136,9 @@ Change `--accent` and the whole site follows. If you swap the chart palette, re-
 - **The reveal can't fail closed.** Cards are visible by default; the scroll animation is opt-in behind a class JS only adds once it has a live `IntersectionObserver`, with a 1.2s failsafe. A blocked script can never leave the shelf blank.
 - **Affiliate links** carry `rel="nofollow sponsored noopener"` and `target="_blank"` — what the FTC and Google both expect.
 - **Accessible.** Keyboard-operable cards and charts, focus rings, `prefers-reduced-motion` respected, skip links, table views, and a disclosure in both the hero and the footer.
-- **CI** validates the catalogue (required fields, duplicate ids, images present on disk, price types, and a warning for any Amazon link missing its tag) before it will deploy.
+- **CI** validates before it will deploy: required fields, duplicate ids and slugs, images present on disk, price types, a warning for any Amazon link missing its tag, and — since a guide that references a deleted product renders empty rather than failing — every guide pick must resolve to a real product.
+- **Depth-aware asset paths.** No absolute URLs anywhere, so the site works identically on a project page, a custom domain, or opened from a local folder.
+- **The generator owns the nav** on every page including the hand-written ones, rewriting it between marker comments — one definition, no drift.
 - **`robots.txt`** allows search engines and opts out of AI training crawlers.
 
 ---
